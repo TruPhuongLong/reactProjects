@@ -1,21 +1,47 @@
-import React, {Component} from 'react';
-import {Header} from './components/header';
-import {List} from './components/list';
+import React, { Component } from 'react';
+import { Header } from './components/header';
+import { List } from './components/list';
+import { fetchDataDummy, createNewItem } from '../service/api-service';
+import InputBar from './components/inputbar';
 
-export default class App extends Component{
-    constructor(){
+export default class App extends Component {
+    constructor() {
         super();
-        this.itemSource = [1,2,3,4,5,6,'mot', 'hai']
+        this.state = {
+            itemSource: []
+        }
     }
 
-    render(){
-        const {itemSource} = this;
+    componentDidMount() {
+        fetchDataDummy()
+            .then(itemSource => this.setState({itemSource}));
+    }
+
+    _itemClose(item) {
+        const itemSource = this.state.itemSource.filter(_item => _item.id !== item.id);
+        this.setState({ itemSource });
+    }
+
+    _addNewItem(text){
+        this.setState({
+           itemSource: [...this.state.itemSource, createNewItem(text)]
+        })
+    }
+
+    render() {
+        const { itemSource } = this.state;
         return (
-            <div>
+            <div >
                 <Header bodyColor='white'>
-                    <h1 style={{textAlign: 'center'}}> im header </h1>
+                    <h1 style={{ textAlign: 'center' }}> im header </h1>
                 </Header>
-                <List itemSource={itemSource}/>
+                <InputBar titlebutton="Add" eventHandle={this._addNewItem.bind(this)}/>
+                <List itemSource={itemSource} itemClose={this._itemClose.bind(this)}>
+                    <h1>oke</h1>
+                </List>
+                <Header bodyColor='white'>
+                    <h1 style={{ textAlign: 'center' }}> im footer </h1>
+                </Header>
             </div>
         )
     }
