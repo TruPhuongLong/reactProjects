@@ -1,7 +1,8 @@
 import React from 'react';
 
+
 export const Card = ({ children, item, close = f=>f }) => (
-    <div style={localStyles.constainer}>
+    <div className="card">
         {children}
         <hr style={{width: '80%'}}/>
         <button onClick={()=>close(item)} style={localStyles.button}>close</button>
@@ -9,16 +10,17 @@ export const Card = ({ children, item, close = f=>f }) => (
 )
 
 const localStyles = {
-    constainer: {
-        display: 'flex',
-        flexDirection: 'column',
-        backgroundColor: 'gray',
-        color: 'white',
-        width: 200,
-        height: 'auto',
-        padding: 10,
-        margin: 40,
-    },
+    // constainer: {
+    //     display: 'flex',
+    //     flexDirection: 'column',
+    //     backgroundColor: '#CCC',
+    //     color: 'white',
+    //     width: 200,
+    //     height: 'auto',
+    //     padding: 10,
+    //     margin: 40,
+    //     boxShadow: '2px 2px gray'
+    // },
     button: {
         padding: 5,
     }

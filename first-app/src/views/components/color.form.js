@@ -6,7 +6,8 @@ export const ColorForm = ({ onSubmit = f => f }) => {
     const submit = (e) => {
         e.preventDefault();
         onSubmit(_title.value, _color.value);
-
+        _title.value = ''
+        _title.focus()
     }
 
     return (

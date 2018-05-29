@@ -27,3 +27,20 @@ body {
   .star.selected {
     background-color: red;
   }
+
+  .card{
+    display: flex;
+    flex-direction: column;
+    background-color: #CCC;
+    color: white;
+    width: 200px;
+    height: auto;
+    padding: 10;
+    margin: 40px;
+    box-shadow: 2px 2px gray;
+    /* align-items: center; */
+  }
+
+  .card:hover{
+    box-shadow: 3px 3px green;
+  }

@@ -34,7 +34,7 @@ export class ListColorPage extends React.Component {
                             <h1>{item.title}</h1>
                             <div style={{height: 100, width: '100%', backgroundColor: item.color}}></div>
                             <br />
-                            <ListStar length={6} rating={3}/>
+                            <ListStar numberStar={6} rating={3}/>
                             <br /><br/>
                         </Card>
                     }

@@ -4,11 +4,11 @@ import { Star } from './star';
 
 export class ListStar extends React.Component {
     static defaultProps = {
-        length : 5
+        numberStar : 5
     }
 
     static propTypes = {
-        length: PropTypes.number,
+        numberStar: PropTypes.number,
         rating: PropTypes.number,
     }
 
@@ -27,7 +27,7 @@ export class ListStar extends React.Component {
         return (
             <div style={localStyles.container}>
                 {
-                    [...Array(this.props.length)].map((e, i) => {
+                    [...Array(this.props.numberStar)].map((e, i) => {
                         return <Star key={i} selected={i < this.state.selected} onClick={this.onClick.bind(this, i + 1)} />
                     })
                 }
