@@ -5,7 +5,7 @@ import { fetchDataDummy, createNewItem } from '../service/api-service';
 import InputBar from './components/inputbar';
 // import {fromJS} from 'immutable';
 
-export default class Home extends Component {
+export default class ListCardPage extends Component {
     constructor() {
         super();
         this.state = {

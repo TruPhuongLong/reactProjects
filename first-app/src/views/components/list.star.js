@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Star } from './star';
 
 export class ListStar extends React.Component {
@@ -6,31 +7,37 @@ export class ListStar extends React.Component {
         length : 5
     }
 
+    static propTypes = {
+        length: PropTypes.number,
+        rating: PropTypes.number,
+    }
+
     constructor(props){
         super(props);
-        const {length} = props;
-        const arr = new Array(length).fill(false);
         this.state = {
-            arrSelecteds: [...arr]
+            selected: props.rating || -1
         }
     }
 
-    onClick = (index) => {
-        // console.log('onclick + ' + index)
-        const arrSelecteds = this.state.arrSelecteds.map((e, i)=> i <= index ? true : false )
-        this.setState({arrSelecteds})
+    onClick = (selected) => {
+        this.setState({selected})
     }
 
     render() {
         return (
-            <div>
+            <div style={localStyles.container}>
                 {
-                    this.state.arrSelecteds.map((e, i) => {
-                        console.log(e, i)
-                        return <Star key={i} selected={e} onClick={this.onClick.bind(this, i)} />
+                    [...Array(this.props.length)].map((e, i) => {
+                        return <Star key={i} selected={i < this.state.selected} onClick={this.onClick.bind(this, i + 1)} />
                     })
                 }
             </div>
         )
+    }
+}
+
+const localStyles = {
+    container: {
+        alignSelf: 'center',
     }
 }

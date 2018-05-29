@@ -10,7 +10,7 @@ body {
   width: 25px;
   margin: 2px;
   float: left;
-  background-color: gray;
+  background-color: white;
   clip-path: polygon(
     50% 0%,
     63% 38%,

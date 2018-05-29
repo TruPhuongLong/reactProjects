@@ -1,16 +1,19 @@
 import React from 'react';
-import { Card } from './card';
 
-export const List = ({ itemSource, children, itemClose }) => (
-    <div style={{flex: 1, flexDirection: 'row'}}>
-        {itemSource.map(item =>
-
-            <Card key={item.id} item={item} close={itemClose}>
-                <h2>{item.name}</h2>
-                <p>{item.email}</p>
-            </Card>
-
+export const List = ({ itemSource = [], renderRow = f=>f }) => (
+    <div style={localStyles.container}>
+        {itemSource.map((item,i) =>
+            renderRow(item,i)
         )}
     </div>
 )
+
+const localStyles = {
+    container: {
+        display: 'flex',
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        justifyContent: 'space-around' 
+    }
+}
 
