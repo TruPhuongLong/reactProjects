@@ -1,41 +1,27 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
 import { ColorForm } from '../components/color.form';
 import { List } from '../components/list';
 import { Card } from '../components/card';
-import {ListStar} from '../components/list.star';
+import { ListStar } from '../components/list.star';
+import { addAction, removeAction } from '../../redux/actions/crud-action';
 
-export class ListColorPage extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            itemSource: []
-        }
-    }
-
-    addItem(title, color) {
-        const itemSource = [...this.state.itemSource, { title, color }]
-        this.setState({ itemSource })
-    }
-
-    closeItem(item){
-        const itemSource = this.state.itemSource.filter(_item => _item !== item );
-        this.setState({ itemSource })
-    }
-
+class ListColorPage extends React.Component {
     render() {
-        const { itemSource } = this.state;
+        const { itemSource, addColor, removeColor } = this.props;
         return (
             <div>
-                <ColorForm onSubmit={this.addItem.bind(this)} />
+                <ColorForm onSubmit={addColor} />
                 <List
                     itemSource={itemSource}
                     renderRow={(item, i) =>
-                        <Card item={item} key={i} close={this.closeItem.bind(this)}>
+                        <Card item={item} key={i} close={removeColor}>
                             <h1>{item.title}</h1>
-                            <div style={{height: 100, width: '100%', backgroundColor: item.color}}></div>
+                            <div style={{ height: 100, width: '100%', backgroundColor: item.color }}></div>
                             <br />
-                            <ListStar numberStar={6} rating={3}/>
-                            <br /><br/>
+                            <ListStar numberStar={6} rating={3} />
+                            <br /><br />
                         </Card>
                     }
                 />
@@ -43,3 +29,27 @@ export class ListColorPage extends React.Component {
         )
     }
 }
+const mapStateToProps = (state) => {
+    console.log(state)
+    return {
+        itemSource: state.listReducer.listCard,
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        addColor: (title, color) => {
+            // console.log(`_add run... with title: ${title}, color: ${color}`);
+            dispatch(addAction(title, color));
+        },
+        removeColor: (item) => {
+            // console.log(`remove run... with item id: ${item.id}`);
+            dispatch(removeAction(item));
+        },
+    }
+}
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(ListColorPage);

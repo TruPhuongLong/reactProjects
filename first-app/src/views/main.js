@@ -1,16 +1,24 @@
 import React, { Component } from 'react';
-import '../index.css';
+import { Provider } from 'react-redux';
 
-import {ListColorPage} from './pages/list-color-page';
+import '../index.css';
+import ListColorPage from './pages/list-color-page';
+import { store } from '../redux/stores/store';
+
 
 export default class App extends Component {
 
 
     render() {
         return (
-            <div style={{ backgroundColor: 'white' }}>
-                <ListColorPage />
-            </div>
+            // <div style={{ backgroundColor: 'white' }}>
+            //     <ListColorPage />
+            // </div>
+            <Provider store={store}>
+                <div style={{ backgroundColor: 'white' }}>
+                    <ListColorPage />
+                </div>
+            </Provider>
         )
     }
 }
