@@ -3,6 +3,7 @@ import { Provider } from 'react-redux';
 
 import '../index.css';
 import ListColorPage from './pages/list-color-page';
+import ChatPage from './pages/home.page';
 import { store } from '../redux/stores/store';
 
 
@@ -16,7 +17,7 @@ export default class App extends Component {
             // </div>
             <Provider store={store}>
                 <div style={{ backgroundColor: 'white' }}>
-                    <ListColorPage />
+                    <ChatPage />
                 </div>
             </Provider>
         )

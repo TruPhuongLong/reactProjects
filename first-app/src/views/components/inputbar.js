@@ -28,19 +28,32 @@ export default class InputBar extends Component {
     }
 
     render() {
-        const { titlebutton } = this.props;
+        const { titleButton } = this.props;
         const { textInput } = this.state;
         return (
-            <div style={{ margin: 1, padding: 3, flex: 1, flexDirection: 'row', backgroundColor: 'gray' }}>
-                <input style={{ flex: 1, padding: 3 }}
+            <div style={localStyles.container}>
+                <input style={localStyles.input}
                     value={textInput}
                     onChange={this._onChange.bind(this)}
                     onKeyDown={this._onKeyDown.bind(this)}
                 />
-                <button onClick={() => this._exportItem.bind(this)}>
-                    {titlebutton}
+                <button onClick={this._exportItem.bind(this)}>
+                    {titleButton || 'ADD'}
                 </button>
             </div>
         )
+    }
+}
+
+const localStyles = {
+    container: {
+        margin: 1,
+        padding: 3,
+        display: 'flex',
+        flexDirection: 'row',
+        backgroundColor: 'gray',        
+    },
+    input: {
+        flex: 1,
     }
 }
