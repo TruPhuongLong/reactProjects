@@ -1,9 +1,9 @@
 import React from 'react';
 
-export const List = ({ itemSource = [], renderRow = f=>f }) => (
+export const List = ({ itemSource = [], renderRow = f => f }) => (
     <div style={localStyles.container}>
-        {itemSource.map((item,i) =>
-            renderRow(item,i)
+        {itemSource.map((item, i) =>
+            renderRow(item, i)
         )}
     </div>
 )
@@ -11,9 +11,9 @@ export const List = ({ itemSource = [], renderRow = f=>f }) => (
 const localStyles = {
     container: {
         display: 'flex',
-        flexDirection: 'row',
+        flexDirection: 'column',
         flexWrap: 'wrap',
-        justifyContent: 'space-around' 
+        justifyContent: 'flex-start'
     }
 }
 
