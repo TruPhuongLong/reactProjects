@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { socket } from '../../service/socket.io';
+// import { socket } from '../../service/socket.io';
 import InputBar from '../components/inputbar';
 import { List } from '../components/list';
 
@@ -11,16 +11,16 @@ export default class ChatPage extends Component {
         this.state = {
             messages: []
         }
-        socket.on('message', message => {
-            console.log('on message work')
-            const messages = [...this.state.messages, message]
-            this.setState({ messages })
-        })
+        // socket.on('message', message => {
+        //     console.log('on message work')
+        //     const messages = [...this.state.messages, message]
+        //     this.setState({ messages })
+        // })
     }
 
-    _sendMessage(mes) {
-        socket.emit('message', mes)
-    }
+    // _sendMessage(mes) {
+    //     socket.emit('message', mes)
+    // }
 
     _renderRow(item, index) {
         return (
