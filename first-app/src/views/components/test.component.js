@@ -1,10 +1,11 @@
 import React from 'react';
 import { Button } from './button.compoent';
-import {TestReceiveProps} from './test.receiveProps';
+import { TestReceiveProps } from './test.receiveProps';
+import FlipMove from 'react-flip-move';
 
 export class TestComponent extends React.Component {
 
-    constructor(props){
+    constructor(props) {
         super(props)
         this.state = {
             count: 0
@@ -12,13 +13,27 @@ export class TestComponent extends React.Component {
         console.log('constructor')
     }
 
-    componentWillMount(){
+    xhr;
+
+    componentWillMount() {
         console.log('component will mount')
     }
 
     componentDidMount() {
         // window.addEventListener('', this._handler);
-        console.log('compoenntDidMount')
+        // console.log('compoenntDidMount')
+        this.xhr = new XMLHttpRequest();
+        this.xhr.open('GET', 'https://ipinfo.io/json', true);
+        this.xhr.send();
+
+        this.xhr.addEventListener('readystatechange', this.processrequest.bind(this))
+    }
+
+    processrequest() {
+        if (this.xhr.readyState === 4 && this.xhr.status === 200) {
+            const response = JSON.parse(this.xhr.responseText);
+            console.log(response.ip);
+        }
     }
 
 
@@ -31,16 +46,16 @@ export class TestComponent extends React.Component {
 
 
 
-    shouldComponentUpdate(){
+    shouldComponentUpdate(newProps, newState) {
         console.log('should compoent update')
         return true;
     }
 
-    componentWillUpdate(){
+    componentWillUpdate() {
         console.log('componet will update')
     }
 
-    componentDidUpdate(){
+    componentDidUpdate() {
         console.log('component did update')
     }
 
@@ -59,13 +74,13 @@ export class TestComponent extends React.Component {
         console.log('component will unmount')
     }
 
-    componentWillReceiveProps(){
+    componentWillReceiveProps() {
         console.log('component will receive props')
     }
 
-    
 
-    componentDidCatch(){
+
+    componentDidCatch() {
         console.log('componet did catch')
     }
 
@@ -91,6 +106,8 @@ export class TestComponent extends React.Component {
         this.setState(preState => ({
             count: preState.count + 1
         }))
+        // const h1 = document.getElementById('h1')
+        // h1.innerHTML = "what is going on"
     }
 
     // _onChange = e => {
@@ -101,16 +118,14 @@ export class TestComponent extends React.Component {
         const { children, style } = this.props;
         return (
             <div className="frame" style={{ ...style }}>
-                <h3>test component</h3>
+                <h3 id="h1">test component</h3>
                 {children}
                 <Button onClick={this._minusBtnClicked}> - </Button>
                 <Button onClick={this._plusBtnClicked}> + </Button>
-                {
-                    this.state.count > 2 ? 
-                    null 
-                    :
+ 
+                <FlipMove duration={259} easing='ease-out'>
                     <TestReceiveProps count={this.state.count} />
-                }
+                </FlipMove>
             </div>
         )
     }

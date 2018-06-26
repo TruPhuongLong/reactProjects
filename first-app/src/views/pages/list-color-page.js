@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import FlipMove from 'react-flip-move';
 
 import { ColorForm } from '../components/color.form';
 import { List } from '../components/list';
@@ -13,18 +14,23 @@ class ListColorPage extends React.Component {
         return (
             <div>
                 <ColorForm onSubmit={addColor} />
-                <List
-                    itemSource={itemSource}
-                    renderRow={(item, i) =>
-                        <Card item={item} key={i} close={removeColor}>
-                            <h1>{item.title}</h1>
-                            <div style={{ height: 100, width: '100%', backgroundColor: item.color }}></div>
-                            <br />
-                            <ListStar numberStar={6} rating={3} />
-                            <br /><br />
-                        </Card>
-                    }
-                />
+                <FlipMove duration={1000} easing='ease-out'>
+                    <List
+                        itemSource={itemSource}
+                        renderRow={(item, i) =>
+                            <FlipMove duration={1000} easing='ease-out'>
+                                <Card item={item} key={i} close={removeColor}>
+                                    <h1>{item.title}</h1>
+                                    <div style={{ height: 100, width: '100%', backgroundColor: item.color }}></div>
+                                    <br />
+                                    <ListStar numberStar={6} rating={3} />
+                                    <br /><br />
+                                </Card>
+                            </FlipMove>
+                        }
+                    />
+                </FlipMove>
+
             </div>
         )
     }
