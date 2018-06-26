@@ -6,7 +6,7 @@ import ListColorPage from './pages/list-color-page';
 import ChatPage from './pages/home.page';
 import { store } from '../redux/stores/store';
 import SignalrChat from './pages/signalr.chat.page';
-
+import {TestComponent} from './components/test.component';
 
 export default class App extends Component {
 
@@ -18,7 +18,14 @@ export default class App extends Component {
             // </div>
             <Provider store={store}>
                 <div style={{ backgroundColor: 'white' }}>
-                    <SignalrChat />
+                    {/* <SignalrChat /> */}
+                    <h1>welcome here</h1>
+                    <TestComponent style={{backgroundColor: 'yellow', color: 'red'}}>
+                        <p>im children</p>
+                        <i>im children 2</i>
+                        <i>im children3</i>
+                        <i>im children 4</i>
+                    </TestComponent>
                 </div>
             </Provider>
         )

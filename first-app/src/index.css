@@ -44,3 +44,29 @@ body {
   .card:hover{
     box-shadow: 3px 3px green;
   }
+
+  .frame {
+    padding: 20px;
+    background-color: orange;
+    border-radius: 50%;
+    width: 300px;
+    height: 300px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .center{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+  }
+
+  .btn-square{
+    width: 40px;
+    height: 40px;
+  }
