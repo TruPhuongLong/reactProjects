@@ -8,6 +8,7 @@ import { store } from '../redux/stores/store';
 import SignalrChat from './pages/signalr.chat.page';
 import {TestComponent} from './components/test.component';
 import {Animation} from './components/animation';
+import Responsive from './components/responsive';
 
 import {MenuContainer} from './components/menucontainer';
 
@@ -16,16 +17,24 @@ export default class App extends Component {
 
     render() {
         return (
-            // <div style={{ backgroundColor: 'white' }}>
-            //     <ListColorPage />
-            // </div>
-            <Provider store={store}>
-                <div style={{ backgroundColor: 'white' }} className="container">
-                    {/* <ListColorPage /> */}
-                    <h1>Welcome</h1>
-                    <MenuContainer />
-                </div>
-            </Provider>
+            <div style={{ backgroundColor: 'white' }}>
+                <Responsive />
+            </div>
+
+
+
+
+
+
+
+
+            // <Provider store={store}>
+            //     <div style={{ backgroundColor: 'white' }} className="container">
+            //         {/* <ListColorPage /> */}
+            //         <h1>Welcome</h1>
+            //         <MenuContainer />
+            //     </div>
+            // </Provider>
         )
     }
 }
