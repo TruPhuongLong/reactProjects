@@ -11,6 +11,9 @@ import {Animation} from './components/animation';
 import Responsive from './components/responsive';
 
 import {MenuContainer} from './components/menucontainer';
+import EventComponent from './components/event';
+import {BrowserRouter, Route} from 'react-router-dom';
+import RouteComponent from './components/route';
 
 export default class App extends Component {
 
@@ -18,11 +21,11 @@ export default class App extends Component {
 
     render() {
         return (
-            <div style={{ backgroundColor: 'white' }}>
-                <Responsive onClicked={()=>console.log('it work')}/>
+            // <div style={{ backgroundColor: 'white' }}>
+            //     <Responsive onClicked={()=>console.log('it work')}/>
 
                 
-            </div>
+            // </div>
 
 
 
@@ -39,6 +42,17 @@ export default class App extends Component {
             //         <MenuContainer />
             //     </div>
             // </Provider>
+
+
+
+
+
+
+                <div>
+                    <Route path="/" exact strict component={RouteComponent} />
+                    <Route path="/event" exact strict component={EventComponent} />
+
+                </div>
         )
     }
 }
