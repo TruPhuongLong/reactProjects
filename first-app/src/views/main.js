@@ -15,11 +15,15 @@ import {MenuContainer} from './components/menucontainer';
 export default class App extends Component {
 
 
+
     render() {
         return (
             <div style={{ backgroundColor: 'white' }}>
-                <Responsive />
+                <Responsive onClicked={()=>console.log('it work')}/>
+
+                
             </div>
+
 
 
 
